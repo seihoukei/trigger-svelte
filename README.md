@@ -63,12 +63,12 @@ Component:
 Trigger.on("tick", (value) => console.log("Tick", value))
 ```
 
+Anywhere else:
 ```js
-//anywhere else
 setInterval(() => Trigger("tick", Math.random()), 1000)
 ```
 
-Will output "Tick" with a random number to console for each `Trigger("tick")` while component is alive (trigger is created onMount and removed onDestroy)
+Will output "Tick" with a random number to console while component is alive (trigger is created onMount and removed onDestroy)
 
 # Quick reference (based on JSDoc)
 
