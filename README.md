@@ -23,7 +23,7 @@ Normal handlers are set up with `Trigger.handles(trigger, handler, ...args)` or 
 
 Modifying handlers are set up with `Trigger.modifies(trigger, handler, ...args)`
 
-These should be places in top level of component, **NOT** within onMount. Both methods return a handler object chat can be canselled or have its priority changed with .setPriority(X) where handlers with lower X would be executed earlier.
+These should be placed in top level of component, **NOT** within onMount. Both methods return a handler object chat can be cancelled or have its priority changed with .setPriority(X) where handlers with lower X would be executed earlier.
 
 ### Vanilla way
 
