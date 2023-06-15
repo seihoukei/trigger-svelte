@@ -149,7 +149,7 @@ Event handling system
 Can be used as shorthand for Trigger.execute(trigger, ...args)
 executes all non-transformative handlers associated with trigger (like array.forEach)
 
-**Kind**: global constant  
+**Kind**: global object 
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -158,11 +158,11 @@ executes all non-transformative handlers associated with trigger (like array.for
 
 <a name="execute"></a>
 
-## execute(trigger, ...args)
+## Trigger.execute(trigger, ...args)
 executes all non-transformative handlers associated with trigger
 (like array.forEach)
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -171,11 +171,11 @@ executes all non-transformative handlers associated with trigger
 
 <a name="poll"></a>
 
-## poll(trigger, ...args) ⇒ <code>any</code>
+## Trigger.poll(trigger, ...args) ⇒ <code>any</code>
 collects return values of all non-transformative handlers associated with trigger
 (like array.map)
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 **Returns**: <code>any</code> - - array of values returned by handlers  
 
 | Param | Type | Description |
@@ -185,12 +185,12 @@ collects return values of all non-transformative handlers associated with trigge
 
 <a name="modify"></a>
 
-## modify(input, trigger, ...args) ⇒ <code>any</code>
+## Trigger.modify(input, trigger, ...args) ⇒ <code>any</code>
 applies all transformative handlers associated with trigger
 in a chain
 (like array.reduce)
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 **Returns**: <code>any</code> - - value returned by last handler  
 
 | Param | Type | Description |
@@ -201,10 +201,10 @@ in a chain
 
 <a name="handles"></a>
 
-## handles(trigger, callback, ...args) ⇒ [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler)
+## Trigger.handles(trigger, callback, ...args) ⇒ [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler)
 creates non-transformative handler that exists for component's lifetime
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 **Returns**: [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler) - Promise that would resolve to handler
 and can forward .setPriority, .setOnce and .cancel to it  
 
@@ -216,10 +216,10 @@ and can forward .setPriority, .setOnce and .cancel to it
 
 <a name="modifies"></a>
 
-## modifies(trigger, callback, ...args) ⇒ [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler)
+## Trigger.modifies(trigger, callback, ...args) ⇒ [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler)
 creates transformative handler that exists for component's lifetime
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 **Returns**: [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler) - Promise that would resolve to handler
 and can forward .setPriority, .setOnce and .cancel to it  
 
@@ -231,10 +231,10 @@ and can forward .setPriority, .setOnce and .cancel to it
 
 <a name="createHandler"></a>
 
-## createHandler(trigger, callback, ...args) ⇒ [<code>TriggerHandler</code>](#TriggerHandler)
+## Trigger.createHandler(trigger, callback, ...args) ⇒ [<code>TriggerHandler</code>](#TriggerHandler)
 creates non-transformative handler
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 **Returns**: [<code>TriggerHandler</code>](#TriggerHandler) - handler  
 
 | Param | Type | Description |
@@ -245,10 +245,10 @@ creates non-transformative handler
 
 <a name="createModifier"></a>
 
-## createModifier(trigger, callback, ...args) ⇒ [<code>TriggerHandler</code>](#TriggerHandler)
+## Trigger.createModifier(trigger, callback, ...args) ⇒ [<code>TriggerHandler</code>](#TriggerHandler)
 creates transformative handler
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 **Returns**: [<code>TriggerHandler</code>](#TriggerHandler) - handler  
 
 | Param | Type | Description |
@@ -259,28 +259,28 @@ creates transformative handler
 
 <a name="createTrigger"></a>
 
-## createTrigger() ⇒ [<code>TriggerFunction</code>](#TriggerFunction)
+## Trigger.createTrigger() ⇒ [<code>TriggerFunction</code>](#TriggerFunction)
 creates function that triggers using itself as a key
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 <a name="createPoll"></a>
 
-## createPoll() ⇒ [<code>PollFunction</code>](#PollFunction)
+## Trigger.createPoll() ⇒ [<code>PollFunction</code>](#PollFunction)
 creates function that triggers using itself as a key
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 <a name="createModification"></a>
 
-## createModification() ⇒ [<code>ModifierFunction</code>](#ModifierFunction)
+## Trigger.createModification() ⇒ [<code>ModifierFunction</code>](#ModifierFunction)
 creates function that triggers using itself as a key
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 <a name="clearTrigger"></a>
 
-## clearTrigger(trigger)
+## Trigger.clearTrigger(trigger)
 cancels all handlers for a trigger and removes it from lists
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -288,12 +288,12 @@ cancels all handlers for a trigger and removes it from lists
 
 <a name="on"></a>
 
-## on(trigger, callback, ...args) ⇒ [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler)
+## Trigger.on(trigger, callback, ...args) ⇒ [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler)
 creates non-transformative handler that exists for component's lifetime
 
 shorthand to Trigger.handles()
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 **Returns**: [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler) - Promise that would resolve to handler
 and can forward .setPriority, .setOnce and .cancel to it  
 
@@ -305,13 +305,13 @@ and can forward .setPriority, .setOnce and .cancel to it
 
 <a name="once"></a>
 
-## once(trigger, callback, ...args) ⇒ [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler)
+## Trigger.once(trigger, callback, ...args) ⇒ [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler)
 creates non-transformative handler that exists for component's lifetime
 or until first execution
 
 shorthand to Trigger.handles().setOnce()
 
-**Kind**: global function  
+**Kind**: static method of [<code>Trigger</code>](#Trigger)  
 **Returns**: [<code>Promise.&lt;TriggerHandler&gt;</code>](#TriggerHandler) - Promise that would resolve to handler
 and can forward .setPriority, .setOnce and .cancel to it  
 
