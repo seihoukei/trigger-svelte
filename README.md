@@ -4,7 +4,7 @@ Custom JavaScript event system
 
 # Usage
 
-You set up handlrs for arbitrary triggers and then can trigger them. Both handlers and trigger activations can have any number of arguments. Handler arguments are passed to callback before trigger arguments.  
+You set up handlers for arbitrary triggers and then can trigger them. Both handlers and trigger activations can have any number of arguments. Handler arguments are passed to callback before trigger arguments.  
 
 ## Set up handlers 
 
@@ -12,12 +12,12 @@ Any valid Map key can be a trigger. There are several ways to set up a handler.
 
 There are two types of handlers:
 
-- *Normal* - executes with given arguments and might return a value
-- *Modifier* - executed with input value in addition to arguments and returns modified value
+- *Normal* - executes with given arguments and might return a value. Called with `handler(...handlerArguments, ...triggerArguments)`
+- *Modifier* - executed with input value in addition to arguments and returns modified value. Called with `handler(input, ...handlerArguments, ...triggerArguments)`
 
 ### Svelte way
 
-Svelte-speficic Trigger functions set up a trigger that will only exist during component's life cycle, from `onMount` to `onDestroy`.
+Svelte-specific Trigger functions set up a trigger that will only exist during component's life cycle, from `onMount` to `onDestroy`.
 
 Normal handlers are set up with `Trigger.handles(trigger, handler, ...args)` or `Trigger.on(trigger, handler, ...args)`
 
@@ -54,8 +54,6 @@ Use `Trigger.modify(input, trigger, ...args)` to execute modifier handlers set u
 `Trigger.createTrigger()` returns function that executes triggers with itself as a key. `Trigger.createPoll()` and `Trigger.createModification()` create similar functions for polling and modification. 
 
 `Trigger.clearTrigger(trigger)` removes all handlers associated with event and removes entry for it from storage.
-
-2) Activate
 
 ## Quick example
 
