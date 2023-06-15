@@ -2,17 +2,77 @@
 
 Custom JavaScript event system
 
+# Usage
+
+You set up handlrs for arbitrary triggers and then can trigger them. Both handlers and trigger activations can have any number of arguments. Handler arguments are passed to callback before trigger arguments.  
+
+## Set up handlers 
+
+Any valid Map key can be a trigger. There are several ways to set up a handler. 
+
+There are two types of handlers:
+
+- *Normal* - executes with given arguments and might return a value
+- *Modifier* - executed with input value in addition to arguments and returns modified value
+
+### Svelte way
+
+Svelte-speficic Trigger functions set up a trigger that will only exist during component's life cycle, from `onMount` to `onDestroy`.
+
+Normal handlers are set up with `Trigger.handles(trigger, handler, ...args)` or `Trigger.on(trigger, handler, ...args)`
+
+Modifying handlers are set up with `Trigger.modifies(trigger, handler, ...args)`
+
+These should be places in top level of component, **NOT** within onMount. Both methods return a handler object chat can be canselled or have its priority changed with .setPriority(X) where handlers with lower X would be executed earlier.
+
+### Vanilla way
+
+Unlike svelte-specific triggers, these can be set up anywhere, but need to be canceled manually.
+
+Normal handlers are set up with `Trigger.createHandler(trigger, handler, ...args)`
+
+Modifying handlers are set up with `Trigger.createModifier(trigger, handler, ...args)`
+
+You can cancel either with `.cancel()` method of returned value.
+
+## Triggering events
+
+### Plain execution
+
+Use `Trigger(trigger, ...args)` to execute normal handlers set up for given trigger. This is similar to `array.forEach`
+
+### Polling results
+
+Use `Trigger.poll(trigger, ...args)` to execute normal handlers set up for given trigger and collect execution results. This is similar to `array.map`
+
+### Value modifications
+
+Use `Trigger.modify(input, trigger, ...args)` to execute modifier handlers set up for the trigger in a chain. This is similar to `array.reduce`.
+
+## Miscellaneous
+
+`Trigger.createTrigger()` returns function that executes triggers with itself as a key. `Trigger.createPoll()` and `Trigger.createModification()` create similar functions for polling and modification. 
+
+`Trigger.clearTrigger(trigger)` removes all handlers associated with event and removes entry for it from storage.
+
+2) Activate
+
 ## Quick example
 
 Component:
 ```js
 //top level
-Trigger.on("tick", () => console.log("Tick"))
+Trigger.on("tick", (value) => console.log("Tick", value))
 ```
 
-Will output "Tick" to console for each `Trigger("tick")` while component is alive (trigger is created onMount and removerd onDestroy)
+```js
+//anywhere else
+setInterval(() => Trigger("tick", Math.random()), 1000)
+```
 
-## Quick reference
+Will output "Tick" with a random number to console for each `Trigger("tick")` while component is alive (trigger is created onMount and removed onDestroy)
+
+# Quick reference (based on JSDoc)
 
 ## Classes
 
@@ -371,6 +431,3 @@ and can forward .setPriority, .setOnce and .cancel to it
 | --- | --- | --- |
 | input | <code>any</code> | initial value |
 | ...args | <code>any</code> | arguments, passed to handler after own arguments |
-
-
-
